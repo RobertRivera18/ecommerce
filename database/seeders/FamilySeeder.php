@@ -4,6 +4,7 @@ namespace Database\Seeders;
 
 use App\Models\Category;
 use App\Models\Family;
+use App\Models\Subcategory;
 use Illuminate\Database\Seeder;
 use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 
@@ -944,10 +945,17 @@ class FamilySeeder extends Seeder
             $family = Family::create([
                 'name' => $family
             ]);
-            foreach ($categorias as $category => $subcategory) {
+            foreach ($categorias as $category => $subcategorias) {
                 $category = Category::create([
-                    'name' => $category
+                    'name' => $category,
+                    'family_id' => $family->id
                 ]);
+                foreach ($subcategorias as $subcategory) {
+                    $subcategory = Subcategory::create([
+                        'name' => $subcategory,
+                        'category_id' => $category->id
+                    ]);
+                }
             }
         }
     }
