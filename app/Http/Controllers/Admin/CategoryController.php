@@ -119,7 +119,7 @@ class CategoryController extends Controller
        session()->flash('swal', [
         'icon' => 'success',
         'title' => 'Bien Hecho',
-        'text' => 'Categoria Actualiazada Correctamente'
+        'text' => 'Categoria Eliminada Correctamente'
     ]);
     return redirect()->route('admin.categories.index');
     }
