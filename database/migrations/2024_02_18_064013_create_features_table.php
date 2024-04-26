@@ -17,7 +17,7 @@ return new class extends Migration
             $table->id();
             $table->string('value');
             $table->string('description');
-            $table->foreignId('option_id')->constrained();
+            $table->foreignId('option_id')->constrained()->onDelete('cascade');
             
             $table->timestamps();
         });

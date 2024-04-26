@@ -20,9 +20,6 @@
                 </x-select>
             </div>
 
-
-
-
             <div class="mb-4">
                 <x-label class="mb-2">
                     Categorias

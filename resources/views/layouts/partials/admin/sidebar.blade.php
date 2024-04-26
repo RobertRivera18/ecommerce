@@ -14,6 +14,12 @@ $links=[
 'active'=>request()->routeIs('admin.families.*')
 ],
 [
+'name'=>'Opciones',
+'icon'=>' fa-solid fa-cog',
+'route'=>route('admin.options.index'),
+'active'=>request()->routeIs('admin.options.*')   
+],
+[
 //Categoria  de productos
 'name'=>'Categorias',
 'icon'=>' fa-solid fa-tags',
@@ -32,11 +38,20 @@ $links=[
 'icon'=>' fa-solid fa-box',
 'route'=>route('admin.products.index'),
 'active'=>request()->routeIs('admin.products.*')   
+],
+[
+'name'=>'Portadas',
+'icon'=>'fa-solid fa-images',
+'route'=>route('admin.covers.index'),
+'active'=>request()->routeIs('admin.covers.*')   
+
 ]
 
 
-]
 
+
+
+]
 
 @endphp
 
@@ -51,7 +66,7 @@ $links=[
             @foreach($links as $link)
             <li>
                 <a href="{{$link['route']}}"
-                    class="flex items-center p-2 text-gray-500 rounded-lg dark:text-white hover:bg-gray-100 dark:hover:bg-gray-900 group {{$link['active'] ? 'bg-gray-300' :''}}">
+                    class="flex items-center p-2 text-gray-800 rounded-lg dark:text-white hover:bg-gray-200 dark:hover:bg-gray-900 group {{$link['active'] ? 'bg-gray-300' :''}}">
                     <span class="inline-flex w-6 h-6 justify-center items-center">
                         <i class="{{$link['icon']}}"></i>
                     </span>
