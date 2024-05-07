@@ -68,115 +68,148 @@
                             @default
                             @endswitch
                         </div>
-                            @endforeach
-                        </div>
+                        @endforeach
                     </div>
                 </div>
+            </div>
+            @endforeach
+        </div>
+        @else
+        <div class="flex items-center p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400"
+            role="alert">
+            <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg"
+                fill="currentColor" viewBox="0 0 20 20">
+                <path
+                    d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z" />
+            </svg>
+            <span class="sr-only">Info</span>
+            <div>
+                <span class="font-medium">Info alert!</span> No hay opciones para este producto.
+            </div>
+        </div>
+        @endif
+
+</div>
+
+
+</section>
+@if($product->variants->count())
+<section class="bg-white border border-gray-200 rounded-lg shadow-lg mt-12 ">
+    <header class="border-b  border-gray-200 px-6 py-2">
+        <div class="flex justify-between">
+            <h1 class="text-lg font-semibold text-gray-700">Variantes</h1>
+        </div>
+    </header>
+    <div class="p-6">
+        <ul class="divide-y -my-4 items-center">
+            @foreach($product->variants as $item)
+            <li class="py-4 flex">
+                <img src="{{$item->image}}" class="w-12 h-12 object-cover object-center">
+                <p class="divide-x">
+                    @foreach ($item->features as $feature)
+                    <span class="px-3">{{$feature->description}}</span>
+                    @endforeach
+                </p>
+                <a class="ml-auto inline-flex items-center px-4 py-2 bg-gray-800 border border-transparent rounded-md font-semibold text-xs text-white uppercase tracking-widest hover:bg-gray-700 focus:bg-gray-700 active:bg-gray-900 focus:outline-none focus:ring-2 focus:ring-indigo-500 focus:ring-offset-2 transition ease-in-out duration-150"
+                    href="{{route('admin.products.variants',[$product,$item])}}">Editar</a>
+            </li>
+            @endforeach
+        </ul>
+    </div>
+</section>
+@endif
+
+
+
+
+
+<x-dialog-modal wire:model="openModal">
+    <x-slot name="title">
+        Agregar Nueva Opción
+    </x-slot>
+
+
+    <x-slot name="content">
+        </x-validations-erros class="mb-4" :errors="$errors">
+
+
+        <div class="mb-4">
+            <x-label class="mb-1">
+                Opción
+            </x-label>
+
+            <x-select class="w-full" wire:model="variant.option_id">
+                <option value="" disabled>
+                    Selecciona una Opción
+                </option>
+                @foreach ($options as $option)
+                <option value="{{$option->id}}">
+                    {{$option->name}}
+                </option>
                 @endforeach
-            </div>
-            @else
-            <div class="flex items-center p-4 text-sm text-blue-800 rounded-lg bg-blue-50 dark:bg-gray-800 dark:text-blue-400" role="alert">
-                <svg class="flex-shrink-0 inline w-4 h-4 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
-                  <path d="M10 .5a9.5 9.5 0 1 0 9.5 9.5A9.51 9.51 0 0 0 10 .5ZM9.5 4a1.5 1.5 0 1 1 0 3 1.5 1.5 0 0 1 0-3ZM12 15H8a1 1 0 0 1 0-2h1v-3H8a1 1 0 0 1 0-2h2a1 1 0 0 1 1 1v4h1a1 1 0 0 1 0 2Z"/>
-                </svg>
-                <span class="sr-only">Info</span>
-                <div>
-                  <span class="font-medium">Info alert!</span> No hay opciones para este producto.
-                </div>
-            </div>
-            @endif
-            
+            </x-select>
+        </div>
+
+        <div class="flex items-center mb-6">
+            <hr class="flex-1">
+            <span>Valores</span>
+            <hr class="flex-1">
         </div>
 
 
-    </section>
-    <x-dialog-modal wire:model="openModal">
-        <x-slot name="title">
-            Agregar Nueva Opción
-        </x-slot>
-
-
-        <x-slot name="content">
-            </x-validations-erros class="mb-4" :errors="$errors">
-
-
-            <div class="mb-4">
-                <x-label class="mb-1">
-                    Opción
-                </x-label>
-
-                <x-select class="w-full" wire:model="variant.option_id">
-                    <option value="" disabled>
-                        Selecciona una Opción
-                    </option>
-                    @foreach ($options as $option)
-                    <option value="{{$option->id}}">
-                        {{$option->name}}
-                    </option>
-                    @endforeach
-                </x-select>
-            </div>
-
-            <div class="flex items-center mb-6">
-                <hr class="flex-1">
-                <span>Valores</span>
-                <hr class="flex-1">
-            </div>
-
-
-            <ul class="mb-4 space-y-4">
-                @foreach ($variants['features'] as $index=>$feature)
-                <li wire:key="variants-feature-{{$index}}
+        <ul class="mb-4 space-y-4">
+            @foreach ($variants['features'] as $index=>$feature)
+            <li wire:key="variants-feature-{{$index}}
                     " class="relative border border-gray-200 rounded-lg p-6">
-                    <div class="absolute top-3 bg-white px-4">
-                        <button wire:click="removefeature({{$index}})">
-                            <i class="fas fa-trash-camp text-red-500 hover:text-red-600"></i>
-                        </button>
-                    </div>
+                <div class="absolute top-3 bg-white px-4">
+                    <button wire:click="removefeature({{$index}})">
+                        <i class="fas fa-trash-camp text-red-500 hover:text-red-600"></i>
+                    </button>
+                </div>
 
-                    <div class="mb-1">
-                        <x-label>
-                            Valores
-                        </x-label>
+                <div class="mb-1">
+                    <x-label>
+                        Valores
+                    </x-label>
 
-                        <x-select class="w-full" wire:model="variants.features.{{$index}}.id"
-                            wire:change="feature_change({{$index}})">
-                            <option value="">
-                                Selecciona un Valor
-                            </option>
-                            @foreach($this->features as $feature)
-                            <option value="{{$feature->id}}">
-                                {{$feature->description}}
-                            </option>
-                            @endforeach
-                        </x-select>
-                    </div>
-                </li>
-                @endforeach
-            </ul>
+                    <x-select class="w-full" wire:model="variants.features.{{$index}}.id"
+                        wire:change="feature_change({{$index}})">
+                        <option value="">
+                            Selecciona un Valor
+                        </option>
+                        @foreach($this->features as $feature)
+                        <option value="{{$feature->id}}">
+                            {{$feature->description}}
+                        </option>
+                        @endforeach
+                    </x-select>
+                </div>
+            </li>
+            @endforeach
+        </ul>
 
-            <div class="flex justify-end">
-                <x-button wire:click="addFeature">
-                    Agregar Valor
-                </x-button>
-            </div>
-
-        </x-slot>
-        <x-slot name="footer">
-            <x-danger-button wire:click="$set('openModal',false)">
-                Cancelar
-            </x-danger-button>
-
-            <x-button class="ml-2" wire:click="save">
-                Guardar
+        <div class="flex justify-end">
+            <x-button wire:click="addFeature">
+                Agregar Valor
             </x-button>
-        </x-slot>
+        </div>
 
-    </x-dialog-modal>
+    </x-slot>
+    <x-slot name="footer">
+        <x-danger-button wire:click="$set('openModal',false)">
+            Cancelar
+        </x-danger-button>
 
-    @push('js')
-    <script>
-        function confirmDeleteFeature(option_id,feature_id){
+        <x-button class="ml-2" wire:click="save">
+            Guardar
+        </x-button>
+    </x-slot>
+
+</x-dialog-modal>
+
+@push('js')
+<script>
+    function confirmDeleteFeature(option_id,feature_id){
             Swal.fire({
                    title: "Estas Seguro?",
                    text: "¡No podrás revertir esto!",
@@ -210,7 +243,7 @@
                       }
                    });
             }
-    </script>
+</script>
 
-    @endpush
+@endpush
 </div>

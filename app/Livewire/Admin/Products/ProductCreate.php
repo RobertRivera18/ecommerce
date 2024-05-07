@@ -24,6 +24,7 @@ class ProductCreate extends Component
                'description' => '',
                'image_path' => '',
                'price' => '',
+               'stock'=>'',
                'subcategory_id' => ''
     ];
 
@@ -67,12 +68,14 @@ class ProductCreate extends Component
             'product.name' => 'required|max:255',
             'product.description' => 'nullable',
             'product.price' => 'required|numeric|min:0',
+            'product.stock' => 'required|numeric|min:0',
             'product.subcategory_id' => 'required|exists:subcategories,id'
         ],[],[
             'product.sku' => 'sku',
             'product.name' => 'Nombre',
             'product.description' => 'Descripción',
             'product.price' => 'Precio',
+            'product.price' => 'Stock',
             'product.subcategory_id' => 'Subcategoria'
         ]);
         $this->product['image_path'] = $this->image->store('products');

@@ -10,6 +10,7 @@ use App\Models\Subcategory;
 use Livewire\WithFileUploads;
 use Livewire\Attributes\Computed;
 use Illuminate\Support\Facades\Storage;
+use Livewire\Attributes\On;
 
 class ProductEdit extends Component
 {
@@ -26,13 +27,13 @@ class ProductEdit extends Component
 
     public function mount($product)
     {
-        $this->productEdit = $product->only('sku', 'name', 'description', 'image_path', 'price', 'subcategory_id');
+        $this->productEdit = $product->only('sku', 'name', 'description', 'image_path', 'price', 'stock', 'subcategory_id');
         $this->families = Family::all();
         $this->category_id = $product->subcategory->category->id;
         $this->family_id = $product->subcategory->category->family_id;
     }
 
-  
+
     public function updatedFamilyId($value)
     {
         $this->category_id = '';
@@ -63,6 +64,7 @@ class ProductEdit extends Component
             'product.name' => 'required|max:255',
             'product.description' => 'nullable',
             'product.price' => 'required|numeric|min:0',
+            'product.stock' => 'required',
             'product.subcategory_id' => 'required|exists:subcategories,id'
         ]);
 
@@ -71,12 +73,18 @@ class ProductEdit extends Component
             $this->product['image_path'] = $this->image->store('products');
         }
         $this->product->update($this->productEdit);
-        session()->flash('swal',[
-            'icon'=>'success',
-            'title'=>'¡Producto Actualizado!',
-            'text'=>'Producto actualizado correctamente'
+        session()->flash('swal', [
+            'icon' => 'success',
+            'title' => '¡Producto Actualizado!',
+            'text' => 'Producto actualizado correctamente'
         ]);
         return redirect()->route('admin.products.edit', $this->product);
+    }
+
+    #[On('variant-generate')]
+    public function updateProduct()
+    {
+        $this->product = $this->product->fresh();
     }
 
 

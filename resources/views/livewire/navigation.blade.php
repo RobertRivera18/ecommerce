@@ -16,7 +16,8 @@
                 </h1>
 
                 <div class="flex-1 hidden md:block">
-                    <x-input class="w-full" placeholder="Buscar por Producto, Tienda o marca" />
+                    <x-input oninput="search(this.value)" class="w-full"
+                        placeholder="Buscar por Producto, Tienda o marca" />
                 </div>
 
                 <div class="flex items-center  space-x-4 md:space-x-8">
@@ -33,7 +34,7 @@
                                 <i class="fas fa-user text-white"></i>
                             </buttom>
                             @endauth
-                            
+
                         </x-slot>
                         <x-slot name="content">
                             @guest
@@ -123,11 +124,11 @@
                     <ul class="grid grid-cols-1 xl:grid-cols-3 gap-8">
                         @foreach ($this->categories as $category)
                         <li>
-                            <a href="" class="text-blue-600 font-semibold text-lg">{{$category->name}}</a>
+                            <a href="{{route('categories.show',$category)}}" class="text-blue-600 font-semibold text-lg">{{$category->name}}</a>
                             <ul class="mt-4 space-y-2">
                                 @foreach($category->subcategories as $subcategory)
                                 <li>
-                                    <a href=""
+                                    <a href="{{route('subcategories.show',$subcategory)}}"
                                         class=" text-sm text-gray-700 hover:text-blue-600">{{$subcategory->name}}</a>
                                 </li>
                                 @endforeach
@@ -139,4 +140,13 @@
             </div>
         </div>
     </div>
+    @push('js')
+    <script>
+        function search(value){
+          Livewire.dispatch('search',{
+            search:value
+          })
+       }
+    </script>
+    @endpush
 </div>

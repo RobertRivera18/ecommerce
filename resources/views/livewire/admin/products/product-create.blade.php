@@ -105,6 +105,20 @@
                 </x-input>
             </div>
 
+            <div class="mb-4">
+                <x-label class="mb-1">
+                    Stock
+                </x-label>
+                
+                <x-input
+                  type="number"
+                  wire:model="product.stock"
+                  class="w-full"
+                  placeholder="Ingrese el stock del producto"
+                 >  
+                </x-input>
+            </div>
+
             <div class="flex justify-end">
                 <x-button>Guardar</x-button>
             </div>

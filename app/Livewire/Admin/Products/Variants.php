@@ -116,8 +116,9 @@ class Variants extends Component
             $variant = Variant::create([
                 'product_id' => $this->product->id
             ]);
-            $variant->features()->attach($combinaciones);
+            $variant->features()->attach($combinacion);
         }
+        $this->dispatch('variant-generate');
     }
 
     public function generarCombinaciones($arrays, $indice = 0, $combinacion = [])
