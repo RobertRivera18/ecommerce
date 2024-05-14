@@ -30,7 +30,7 @@
                                     src="{{ Auth::user()->profile_photo_url }}" alt="{{ Auth::user()->name }}" />
                             </button>
                             @else
-                            <buttom class="text-2xl md:text-3xl">
+                            <buttom class="text-lg md:text-xl">
                                 <i class="fas fa-user text-white"></i>
                             </buttom>
                             @endauth
@@ -38,7 +38,6 @@
                         </x-slot>
                         <x-slot name="content">
                             @guest
-
 
                             <div class="px-4 py-2">
                                 <div class="flex justify-center">
@@ -67,7 +66,7 @@
                         </x-slot>
                     </x-dropdown>
 
-                    <buttom class="text-2xl md:text-3xl">
+                    <buttom class="text-lg md:text-lg">
                         <i class="fas fa-shopping-cart text-white"></i>
                     </buttom>
                 </div>
