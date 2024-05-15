@@ -49,7 +49,7 @@
                     <div class="p-4">
                         <h1 class="text-md mb-2 font- text-gray-700 line-clamp-2 min-h-[56px]">{{$product->name}}</h1>
                         <p class=" text-md text-gray-600 mb-2">${{$product->price}}</p>
-                        <a href=""
+                        <a href="{{route('products.show',$product)}}"
                             class=" text-center block w-full text-white bg-blue-800 hover:bg-blue-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ver
                             mas</a>
                     </div>

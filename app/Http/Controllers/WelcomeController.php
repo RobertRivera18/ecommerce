@@ -18,7 +18,7 @@ class WelcomeController extends Controller
                    })
             ->get();
          $lastProducts=Product::orderBy('created_at','desc')
-                              ->take(12)
+                              ->take(20)
                               ->get();
         return view('welcome', compact('covers','lastProducts'));
     }

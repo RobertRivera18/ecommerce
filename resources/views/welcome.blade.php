@@ -24,7 +24,7 @@
   </div>
 
   <x-container class="p-6">
-    <h1 class="text-2xl text-gray-700 mb-4">Ultimos Productos</h1>
+    <h1 class="text-2xl text-gray-700 mb-4 text-center">Ultimos Productos</h1>
     <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-6">
       @foreach ($lastProducts as $product)
       {{-- <article class="bg-white rounded-lg shadow overflow-hidden">
