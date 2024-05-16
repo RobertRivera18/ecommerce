@@ -66,9 +66,12 @@
                         </x-slot>
                     </x-dropdown>
 
-                    <buttom class="text-lg md:text-lg">
-                        <i class="fas fa-shopping-cart text-white"></i>
-                    </buttom>
+                    <a class="relative">
+
+                        <i class="text-md md:text-lg fas fa-shopping-cart text-white"></i>
+                        <span id="cart-count"
+                            class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-900">{{Cart::instance('shopping')->count()}}</span>
+                    </a>
                 </div>
             </div>
 
@@ -123,7 +126,8 @@
                     <ul class="grid grid-cols-1 xl:grid-cols-3 gap-8">
                         @foreach ($this->categories as $category)
                         <li>
-                            <a href="{{route('categories.show',$category)}}" class="text-blue-600 font-semibold text-lg">{{$category->name}}</a>
+                            <a href="{{route('categories.show',$category)}}"
+                                class="text-blue-600 font-semibold text-lg">{{$category->name}}</a>
                             <ul class="mt-4 space-y-2">
                                 @foreach($category->subcategories as $subcategory)
                                 <li>
@@ -141,6 +145,10 @@
     </div>
     @push('js')
     <script>
+        Livewire.on('cartUpdate',(count)=>{
+             document.getElementById('cart-count').innerText=count
+
+        })
         function search(value){
           Livewire.dispatch('search',{
             search:value

@@ -55,6 +55,9 @@
     </x-container>
 
 
+    @if ($product->variants->count())
+    @livewire('products.add-to-cart-variants',['product'=>$product])
+    @else
     @livewire('products.add-to-cart',['product'=>$product])
-  
+    @endif
 </x-app-layout>

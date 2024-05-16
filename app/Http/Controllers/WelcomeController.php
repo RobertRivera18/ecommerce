@@ -17,8 +17,8 @@ class WelcomeController extends Controller
                       ->orWhereNull('end_at');
                    })
             ->get();
-         $lastProducts=Product::orderBy('created_at','desc')
-                              ->take(20)
+         $lastProducts=Product::orderBy('id','desc')
+                              ->take(12)
                               ->get();
         return view('welcome', compact('covers','lastProducts'));
     }
