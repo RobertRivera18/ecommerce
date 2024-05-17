@@ -1,6 +1,6 @@
 <div x-data="{ open: false }">
     <!-- Encabezado -->
-    <header class="bg-blue-800">
+    <header class="bg-gray-800">
         <x-container class="px-4 py-4">
             <div class="flex justify-between space-x-8">
                 <button class="text-xl md:text-3xl" x-on:click="open=true">
@@ -66,8 +66,7 @@
                         </x-slot>
                     </x-dropdown>
 
-                    <a class="relative">
-
+                    <a href="{{route('cart.index')}}" class="relative">
                         <i class="text-md md:text-lg fas fa-shopping-cart text-white"></i>
                         <span id="cart-count"
                             class="absolute inline-flex items-center justify-center w-6 h-6 text-xs font-bold text-white bg-red-500 border-2 border-white rounded-full -top-4 -end-4 dark:border-gray-900">{{Cart::instance('shopping')->count()}}</span>

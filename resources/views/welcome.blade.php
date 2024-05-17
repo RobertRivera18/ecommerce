@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
   @endpush
 
-  <div class="swiper mb-12">
+  <div class="swiper mb-6">
     <!-- Additional required wrapper -->
     <div class="swiper-wrapper">
       <!-- Slides -->

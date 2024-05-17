@@ -56,11 +56,12 @@
 
                
                 <button
-                    class=" w-full mb-4 text-white bg-gray-700 hover:bg-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center"
-                    wire:click="add_to_cart"
-                    wire:loading.attr="disabled">
-                    Agregar al carrito
-                </button>
+                class="w-full mb-4 text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-400 font-semibold rounded-lg text-base px-6 py-3 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105"
+                wire:click="add_to_cart"
+                wire:loading.attr="disabled">
+                Agregar al carrito
+            </button>
+            
                 <div class="text-sm mb-4">
                     {{$product->description}}
                 </div>
