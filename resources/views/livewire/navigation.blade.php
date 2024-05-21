@@ -1,6 +1,6 @@
 <div x-data="{ open: false }">
     <!-- Encabezado -->
-    <header class="bg-gray-800">
+    <header class="bg-gray-900">
         <x-container class="px-4 py-4">
             <div class="flex justify-between space-x-8">
                 <button class="text-xl md:text-3xl" x-on:click="open=true">
@@ -45,7 +45,7 @@
                                         href="{{route('login')}}">Iniciar Sesión</a>
                                 </div>
                                 <p class="text-sm text-center mt-2">
-                                    ¿No tienes Cuenta? <a class="text-blue-600 hover:underline"
+                                    ¿No tienes Cuenta? <a class="text-gray-800 hover:underline"
                                         href="{{route('register')}}">Registrate</a>
                                 </p>
 
@@ -86,7 +86,7 @@
             <!-- Contenido del menú -->
             <div class="w-full md:w-80 h-screen bg-white">
                 <!-- Encabezado del menú -->
-                <div class="px-4 py-3 bg-blue-700 text-white font-semibold">
+                <div class="px-4 py-3 bg-gray-900 text-white font-semibold">
                     <div class="flex justify-between items-center">
                         <span class="text-lg">Tienda LuxuruShop</span>
                         <button x-on:click="open = false">
@@ -118,7 +118,7 @@
                         <p class="border-b-[3px] border-lime-400 uppercase text-xl font-semibold pb-1">
                             {{$this->familyName}}</p>
                         <a href="{{route('families.show',$family_id)}}"
-                            class="text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ver
+                            class="text-white bg-gray-800 hover:bg-gray-900 font-medium rounded-lg text-sm px-5 py-2.5 me-2 mb-2">Ver
                             Todo</a>
                     </div>
                     <!-- Lista de categorías y subcategorías -->
@@ -126,7 +126,7 @@
                         @foreach ($this->categories as $category)
                         <li>
                             <a href="{{route('categories.show',$category)}}"
-                                class="text-blue-600 font-semibold text-lg">{{$category->name}}</a>
+                                class="text-gray-900 font-semibold text-lg">{{$category->name}}</a>
                             <ul class="mt-4 space-y-2">
                                 @foreach($category->subcategories as $subcategory)
                                 <li>

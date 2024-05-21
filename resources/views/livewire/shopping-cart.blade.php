@@ -4,7 +4,10 @@
             <div class="flex justify-between mb-2">
                 <h1 class="text-lg">Carrito de compras ({{Cart::count()}})</h1>
                 <button
-                    class="font-semibold text-gray-600 underline hover:text-blue-800 hover:no-underline cursor-pointer">
+                    class="font-semibold text-gray-600 underline hover:text-red-600 hover:no-underline cursor-pointer"
+                     wire:click="destroy"
+                    >
+                    <i class="fas fa-trash"></i>
                     Limpiar Carrito
                 </button>
             </div>
@@ -22,7 +25,8 @@
                             </p>
 
                             <button
-                                class="bg-red-100 hover:bg-red-200 text-red-800 text-xs font-semibold rounded px-2.5 py-0.5">
+                                class="bg-red-100 hover:bg-red-200 text-red-800 text-xs font-semibold rounded px-2.5 py-0.5"
+                                wire:click="remove('{{$item->rowId}}')">
                                 <i class="fa fa-xmark"></i>
                                 Quitar
                             </button>
@@ -33,12 +37,15 @@
 
                         <div class="ml-auto space-x-3 flex items-center">
                             <button
-                                class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 transition duration-150 ease-in-out">
+                                class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 transition duration-150 ease-in-out"
+                                wire:click="decrease('{{$item->rowId}}')"
+                               >
                                 -
                             </button>
                             <span class="inline-block w-8 text-center text-lg font-semibold">{{$item->qty}}</span>
                             <button
-                                class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 transition duration-150 ease-in-out">
+                                class="text-white bg-gray-600 hover:bg-gray-700 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-full text-sm px-4 py-2 transition duration-150 ease-in-out"
+                                wire:click="increase('{{$item->rowId}}')">
                                 +
                             </button>
                         </div>

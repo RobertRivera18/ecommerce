@@ -10,8 +10,9 @@
       <!-- Slides -->
       @foreach ($covers as $cover)
       <div class="swiper-slide">
-        <img src="{{$cover->image}}" class="w-full aspect-[3/1] object-cover object-center">
-      </div>
+        <img src="{{$cover->image}}" class="w-full aspect-[3/1] object-cover object-center ">
+    </div>
+    
       @endforeach
 
     </div>

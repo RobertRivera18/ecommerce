@@ -3,7 +3,7 @@
         <div class="grid md:grid-cols-2 gap-6">
             <div class="col-span-1">
                 <figure>
-                    <img class=" rounded-xl aspect-[16/9] w-full object-cover object-center" src="{{$this->variant->image}}"
+                    <img class=" rounded-xl aspect-[16/9] w-full object-cover object-center" src="{{$this->variants->image}}"
                         alt="">
                 </figure>
 

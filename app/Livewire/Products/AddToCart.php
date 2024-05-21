@@ -3,7 +3,7 @@
 namespace App\Livewire\Products;
 
 use Livewire\Component;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use CodersFree\Shoppingcart\Facades\Cart;
 
 class AddToCart extends Component
 {

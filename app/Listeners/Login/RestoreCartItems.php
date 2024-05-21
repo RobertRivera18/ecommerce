@@ -3,8 +3,9 @@
 namespace App\Listeners\Login;
 
 use Illuminate\Auth\Events\Login;
-use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Queue\InteractsWithQueue;
+use CodersFree\Shoppingcart\Facades\Cart;
+use Illuminate\Contracts\Queue\ShouldQueue;
 
 class RestoreCartItems
 {
@@ -21,6 +22,6 @@ class RestoreCartItems
      */
     public function handle(Login $event): void
     {
-        //
+        Cart::instance('shopping')->restore($event->user->id);
     }
 }

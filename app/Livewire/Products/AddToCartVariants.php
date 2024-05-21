@@ -5,7 +5,7 @@ namespace App\Livewire\Products;
 use App\Models\Feature;
 use Livewire\Component;
 use Livewire\Attributes\Computed;
-use Gloudemans\Shoppingcart\Facades\Cart;
+use CodersFree\Shoppingcart\Facades\Cart;
 
 class AddToCartVariants extends Component
 {
@@ -37,7 +37,7 @@ class AddToCartVariants extends Component
             'name' => $this->product->name,
             'qty' => $this->qty,
             'price' => $this->product->price,
-            'options' => [
+            'option' => [
                 'image' => $this->variant->image,
                 'sku' => $this->variant->sku,
                 'features' => Feature::wherIn('id', $this->selected_features)
