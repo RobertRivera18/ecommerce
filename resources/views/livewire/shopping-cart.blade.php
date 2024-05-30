@@ -72,7 +72,7 @@
                      ${{Cart::subtotal()}}
                     </p>
                 </div>
-                <button class=" block w-full mb-4 text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-400 font-semibold rounded-lg text-base px-6 py-3 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Continuar Compra</button>
+                <a href="{{route('shipping.index')}}" class="block w-full mb-4 text-white bg-gradient-to-r from-gray-700 to-gray-900 hover:from-gray-600 hover:to-gray-800 focus:ring-4 focus:outline-none focus:ring-gray-400 font-semibold rounded-lg text-base px-6 py-3 transition duration-300 ease-in-out transform hover:-translate-y-1 hover:scale-105">Continuar Compra</a>
             </div>
         </div>
 

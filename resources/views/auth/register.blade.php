@@ -46,7 +46,7 @@
 
                 <div>
                     <x-label for="phone" value="Telefono" />
-                    <x-input id="phone" class="block mt-1 w-full" type="phone" name="phone" :value="old('phone')"
+                    <x-input id="phone" class="block mt-1 w-full" type="text" name="phone" :value="old('phone')"
                         required autocomplete="phone" />
                 </div>
 

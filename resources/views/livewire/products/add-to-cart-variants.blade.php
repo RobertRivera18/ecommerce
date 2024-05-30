@@ -32,7 +32,7 @@
 
                     <p class="text-sm text-gray-700">4.5 (55)</p>
                 </div>
-                <p class="font-semibold text-xl text-gray-700">
+                <p class="font-semibold text-xl text-gray-700 ml-8">
                     ${{$product->price}}
                 </p>
 
