@@ -1,15 +1,16 @@
 <?php
 
-namespace App\Livewire\Forms;
+namespace App\Livewire\Forms\Shipping;
 
 use Livewire\Form;
-use App\Enums\TypeOfDocument;
 use App\Models\Address;
+use App\Enums\TypeOfDocument;
 use Livewire\Attributes\Validate;
 use Illuminate\Validation\Rules\Enum;
 
-class CreateAddressForm extends Form
+class EditAddressForm extends Form
 {
+    public $id;
     public $type = '';
     public $description = '';
     public $ciudad = '';
@@ -17,6 +18,7 @@ class CreateAddressForm extends Form
     public $receiver = 1;
     public $receiver_info = [];
     public $default = false;
+
 
     public function rules()
     {
@@ -55,30 +57,30 @@ class CreateAddressForm extends Form
         ];
     }
 
-
-    public function save()
+    public function edit($address)
+    {
+        $this->id = $address->id;
+        $this->type = $address->type;
+        $this->description = $address->description;
+        $this->ciudad = $address->ciudad;
+        $this->reference = $address->reference;
+        $this->receiver = $address->receiver;
+        $this->receiver_info = $address->receiver_info;
+        $this->default = $address->default;
+    }
+    public function update()
     {
         $this->validate();
-        if (auth()->user()->addresses->count() === 0) {
-            $this->default = true;
-        }
-        Address::create([
-            'user_id'=>auth()->id(),
+        $address = Address::find($this->id);
+        $address->update([
             'type' => $this->type,
             'description' => $this->description,
             'ciudad' => $this->ciudad,
             'reference' => $this->reference,
             'receiver' => $this->receiver,
             'receiver_info' => $this->receiver_info,
-            'default' => $this->default
+            'default' => $this->default,
         ]);
         $this->reset();
-        $this->receiver_info = [
-            'name' => auth()->user()->name,
-            'last_name' => auth()->user()->last_name,
-            'document_type' => auth()->user()->document_type,
-            'document_number' => auth()->user()->document_number,
-            'phone' => auth()->user()->phone
-        ];
     }
 }

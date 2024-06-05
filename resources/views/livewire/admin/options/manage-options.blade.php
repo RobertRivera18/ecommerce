@@ -5,7 +5,7 @@
                 <h1 class="text-lg font-semibold text-gray-700">Opciones</h1>
 
 
-                <x-button wire:click="set('newOption.openModal',true)">
+                <x-button wire:click="$set('newOption.openModal',true)">
                     Nueva Opción
                 </x-button>
 

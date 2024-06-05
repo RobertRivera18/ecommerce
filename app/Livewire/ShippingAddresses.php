@@ -2,9 +2,11 @@
 
 namespace App\Livewire;
 
-use App\Livewire\Forms\CreateAddressForm;
 use App\Models\Address;
 use Livewire\Component;
+
+use App\Livewire\Forms\Shipping\CreateAddressForm;
+use App\Livewire\Forms\Shipping\EditAddressForm;
 
 class ShippingAddresses extends Component
 {
@@ -12,6 +14,7 @@ class ShippingAddresses extends Component
     public $addresses;
     public $newAddress = false;
     public CreateAddressForm $createAddress;
+    public EditAddressForm $editAddress;
     public function mount()
     {
         $this->addresses = Address::where('user_id', auth()->id())->get();
@@ -33,16 +36,35 @@ class ShippingAddresses extends Component
         });
     }
 
-    public function deleteAddress($id){
-       Address::find($id)->delete();
-       $this->addresses = Address::where('user_id', auth()->id())->get();
+    public function deleteAddress($id)
+    {
+        Address::find($id)->delete();
+        $this->addresses = Address::where('user_id', auth()->id())->get();
+
+        if ($this->addresses->where('default', true)->count() == 0 && $this->addresses->count() > 0) {
+            $this->addresses->first()->update(['default' => true]);
+        }
     }
+
+    public function edit($id)
+    {
+        $address = Address::find($id);
+        $this->editAddress->edit($address);
+    }
+
     public function store()
     {
         $this->createAddress->save();
         $this->addresses = Address::where('user_id', auth()->id())->get();
         $this->newAddress = false;
     }
+
+    public function update()
+    {
+        $this->editAddress->update();
+        $this->addresses = Address::where('user_id', auth()->id())->get();
+    }
+
 
     public function render()
 
